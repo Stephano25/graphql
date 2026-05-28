@@ -77,28 +77,35 @@ export const posts: Post[] = [
 export const comments: Comment[] = [
   {
     id: '1',
-    content: 'Great post!',
+    content: 'Great post! Very informative.',
     postId: '1',
     authorId: '2',
     createdAt: new Date().toISOString()
   },
   {
     id: '2',
-    content: 'Thanks for sharing',
+    content: 'Thanks for sharing this amazing content!',
     postId: '1',
     authorId: '1',
     createdAt: new Date().toISOString()
   },
   {
     id: '3',
-    content: 'Very informative',
+    content: 'Very helpful, I learned a lot.',
     postId: '2',
     authorId: '1',
+    createdAt: new Date().toISOString()
+  },
+  {
+    id: '4',
+    content: 'Excellent post! Keep up the good work.',
+    postId: '2',
+    authorId: '2',
     createdAt: new Date().toISOString()
   }
 ];
 
-// Helper functions - AJOUTER CES FONCTIONS MANQUANTES
+// Helper functions
 export const findUserById = (id: string): User | undefined => {
   return users.find(user => user.id === id);
 };

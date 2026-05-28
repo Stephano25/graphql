@@ -1,7 +1,9 @@
 import { users, posts, findUserById } from '../data/database';
 
 export const Query = {
-  users: () => users,
+  users: () => {
+    return users;
+  },
   
   user: (_: any, { id }: { id: string }) => {
     const user = findUserById(id);
@@ -30,8 +32,10 @@ export const Query = {
     return post;
   },
   
-  me: (_: any, __: any, { user }: any) => {
-    if (!user) throw new Error('Not authenticated');
-    return user;
+  me: (_: any, __: any, context: any) => {
+    if (!context.user) {
+      throw new Error('Not authenticated');
+    }
+    return context.user;
   }
 };

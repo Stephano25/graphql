@@ -51,7 +51,7 @@ export interface PostsResult {
 
 export interface Context {
   user: User | null;
-  userLoader: ReturnType<typeof import('../dataloaders/userLoader.js').createUserLoader>;
+  userLoader: any; // Remplacer 'any' par le type DataLoader approprié
 }
 
 export interface JWTPayload {

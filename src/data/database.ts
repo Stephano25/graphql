@@ -1,6 +1,33 @@
 import bcrypt from 'bcryptjs';
 
-export const users: any[] = [
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  createdAt: string;
+}
+
+export interface Post {
+  id: string;
+  title: string;
+  content: string;
+  authorId: string;
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Comment {
+  id: string;
+  content: string;
+  postId: string;
+  authorId: string;
+  createdAt: string;
+}
+
+// Données simulées
+export const users: User[] = [
   {
     id: '1',
     name: 'John Doe',
@@ -17,7 +44,7 @@ export const users: any[] = [
   }
 ];
 
-export const posts: any[] = [
+export const posts: Post[] = [
   {
     id: '1',
     title: 'First Post',
@@ -47,7 +74,7 @@ export const posts: any[] = [
   }
 ];
 
-export const comments: any[] = [
+export const comments: Comment[] = [
   {
     id: '1',
     content: 'Great post!',
@@ -71,6 +98,27 @@ export const comments: any[] = [
   }
 ];
 
-export const findUserById = (id: string) => users.find(user => user.id === id);
-export const findUserByEmail = (email: string) => users.find(user => user.email === email);
-export const findCommentsByPostId = (postId: string) => comments.filter(comment => comment.postId === postId);
+// Helper functions - AJOUTER CES FONCTIONS MANQUANTES
+export const findUserById = (id: string): User | undefined => {
+  return users.find(user => user.id === id);
+};
+
+export const findUserByEmail = (email: string): User | undefined => {
+  return users.find(user => user.email === email);
+};
+
+export const findPostsByUserId = (userId: string): Post[] => {
+  return posts.filter(post => post.authorId === userId);
+};
+
+export const findPostsByAuthorId = (authorId: string): Post[] => {
+  return posts.filter(post => post.authorId === authorId);
+};
+
+export const findCommentsByPostId = (postId: string): Comment[] => {
+  return comments.filter(comment => comment.postId === postId);
+};
+
+export const findCommentsByAuthorId = (authorId: string): Comment[] => {
+  return comments.filter(comment => comment.authorId === authorId);
+};

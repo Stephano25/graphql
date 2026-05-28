@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 import { User } from '../types/index.js';
-import { findUserById } from '../data/database.js';
+import { findUserById } from '../data/database';
 
 type BatchGetUsers = (userIds: readonly string[]) => Promise<(User | null)[]>;
 

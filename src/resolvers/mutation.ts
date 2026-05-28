@@ -25,8 +25,10 @@ export const Mutation = {
     
     const newPost = {
       id: String(posts.length + 1),
-      ...input,
+      title: input.title,
+      content: input.content,
       authorId: user.id,
+      published: input.published,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -52,7 +54,9 @@ export const Mutation = {
     
     const updatedPost = {
       ...post,
-      ...input,
+      title: input.title !== undefined ? input.title : post.title,
+      content: input.content !== undefined ? input.content : post.content,
+      published: input.published !== undefined ? input.published : post.published,
       updatedAt: new Date().toISOString()
     };
     

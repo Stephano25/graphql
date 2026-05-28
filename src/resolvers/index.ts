@@ -1,8 +1,8 @@
-import { Query } from './query.js';
-import { Mutation } from './mutation.js';
-import { User } from './user.js';
-import { Post } from './post.js';
-import { Comment } from './comment.js';
+import { Query } from './query';
+import { Mutation } from './mutation';
+import { User } from './user';
+import { Post } from './post';
+import { Comment } from './comment';
 
 export const resolvers = {
   Query,

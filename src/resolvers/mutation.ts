@@ -1,11 +1,9 @@
 import bcrypt from 'bcryptjs';
-import { users, posts, findUserByEmail, findUserById } from '../data/database.js';
-import { generateToken } from '../middleware/auth.js';
-import { MutationResolvers } from '../types/resolvers-types.js';
-import { Post } from '../types/index.js';
+import { users, posts, findUserByEmail } from '../data/database';
+import { generateToken } from '../middleware/auth';
 
-export const Mutation: MutationResolvers = {
-  login: async (_, { email, password }) => {
+export const Mutation = {
+  login: async (_: any, { email, password }: { email: string; password: string }) => {
     const user = findUserByEmail(email);
     if (!user) {
       throw new Error('Invalid credentials');
@@ -17,21 +15,18 @@ export const Mutation: MutationResolvers = {
     }
     
     const token = generateToken(user);
-    
     return { token, user };
   },
   
-  createPost: (_, { input }, { user }) => {
+  createPost: (_: any, { input }: any, { user }: any) => {
     if (!user) {
       throw new Error('You must be logged in to create a post');
     }
     
-    const newPost: Post = {
+    const newPost = {
       id: String(posts.length + 1),
-      title: input.title,
-      content: input.content,
+      ...input,
       authorId: user.id,
-      published: input.published,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -40,7 +35,7 @@ export const Mutation: MutationResolvers = {
     return newPost;
   },
   
-  updatePost: (_, { id, input }, { user }) => {
+  updatePost: (_: any, { id, input }: any, { user }: any) => {
     if (!user) {
       throw new Error('You must be logged in to update a post');
     }
@@ -55,7 +50,7 @@ export const Mutation: MutationResolvers = {
       throw new Error('You can only update your own posts');
     }
     
-    const updatedPost: Post = {
+    const updatedPost = {
       ...post,
       ...input,
       updatedAt: new Date().toISOString()
@@ -65,7 +60,7 @@ export const Mutation: MutationResolvers = {
     return updatedPost;
   },
   
-  deletePost: (_, { id }, { user }) => {
+  deletePost: (_: any, { id }: { id: string }, { user }: any) => {
     if (!user) {
       throw new Error('You must be logged in to delete a post');
     }

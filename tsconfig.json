@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "commonjs",  // ← Changer de "ESNext" à "commonjs"
     "lib": ["ES2022"],
     "outDir": "./dist",
     "rootDir": "./src",

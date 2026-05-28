@@ -1,8 +1,6 @@
 import bcrypt from 'bcryptjs';
-import { User, Post, Comment } from '../types/index.js';
 
-// Données simulées
-export const users: User[] = [
+export const users: any[] = [
   {
     id: '1',
     name: 'John Doe',
@@ -19,7 +17,7 @@ export const users: User[] = [
   }
 ];
 
-export const posts: Post[] = [
+export const posts: any[] = [
   {
     id: '1',
     title: 'First Post',
@@ -49,7 +47,7 @@ export const posts: Post[] = [
   }
 ];
 
-export const comments: Comment[] = [
+export const comments: any[] = [
   {
     id: '1',
     content: 'Great post!',
@@ -73,23 +71,6 @@ export const comments: Comment[] = [
   }
 ];
 
-// Helper functions
-export const findUserById = (id: string): User | undefined => {
-  return users.find(user => user.id === id);
-};
-
-export const findPostsByAuthorId = (authorId: string): Post[] => {
-  return posts.filter(post => post.authorId === authorId);
-};
-
-export const findCommentsByPostId = (postId: string): Comment[] => {
-  return comments.filter(comment => comment.postId === postId);
-};
-
-export const findPostsByUserId = (userId: string): Post[] => {
-  return posts.filter(post => post.authorId === userId);
-};
-
-export const findUserByEmail = (email: string): User | undefined => {
-  return users.find(user => user.email === email);
-};
+export const findUserById = (id: string) => users.find(user => user.id === id);
+export const findUserByEmail = (email: string) => users.find(user => user.email === email);
+export const findCommentsByPostId = (postId: string) => comments.filter(comment => comment.postId === postId);

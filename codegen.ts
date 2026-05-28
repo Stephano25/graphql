@@ -7,10 +7,12 @@ const config: CodegenConfig = {
       plugins: ['typescript', 'typescript-resolvers'],
       config: {
         useIndexSignature: true,
-        contextType: './index.js#Context',
+        contextType: './index#Context',
+        makeResolverTypeCallable: true,
       },
     },
   },
+  require: ['ts-node/register'],  // ← Ajouter cette ligne
 };
 
 export default config;

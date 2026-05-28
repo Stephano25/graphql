@@ -1,0 +1,96 @@
+# 1. Login
+mutation {
+  login(email: "john@example.com", password: "password123") {
+    token
+    user {
+      id
+      name
+      email
+    }
+  }
+}
+
+# 2. Obtenir tous les utilisateurs
+query {
+  users {
+    id
+    name
+    email
+    posts {
+      title
+      content
+    }
+  }
+}
+
+# 3. Posts avec pagination
+query {
+  posts(page: 1, limit: 2) {
+    posts {
+      id
+      title
+      author {
+        name
+        email
+      }
+      comments {
+        content
+        author {
+          name
+        }
+      }
+    }
+    total
+    page
+    limit
+    totalPages
+  }
+}
+
+# 4. Créer un post (avec token JWT)
+mutation {
+  createPost(input: {
+    title: "Nouveau post TypeScript",
+    content: "Contenu avec TypeScript et Apollo Server",
+    published: true
+  }) {
+    id
+    title
+    author {
+      name
+    }
+    createdAt
+  }
+}
+
+# 5. Mettre à jour un post
+mutation {
+  updatePost(id: "1", input: {
+    title: "Titre mis à jour en TS",
+    published: true
+  }) {
+    id
+    title
+    published
+    updatedAt
+  }
+}
+
+# 6. Supprimer un post
+mutation {
+  deletePost(id: "3")
+}
+
+# 7. Obtenir mon profil (authentifié)
+query {
+  me {
+    id
+    name
+    email
+    posts {
+      title
+      content
+      published
+    }
+  }
+}
